@@ -1,17 +1,52 @@
 #!/bin/bash
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+PINK='\033[0;35m'
+CYAN='\033[0;36m'
+ORANGE='\033[0;91m'
+VIOLET='\033[0;92m'
+RESET='\033[0m'
+
+function quit() {
+    # Disable character echoing and buffering
+    stty -echo
+    stty -icanon
+    
+    # Loop to read and handle each character of input
+    while IFS= read -r -n 1 char; do
+        # Break the loop if the user presses Enter
+        if [[ $char == $'q' ]]; then
+            clear
+            break
+        fi
+    done
+    
+    # Enable character echoing and reset terminal settings
+    stty echo
+    stty icanon
+    
+    echo
+}
+
 # help function
 function display_help() {
-    echo "name    fileorg"
-    echo "utility organizes files"
+    echo
+    echo -e "name\t\t${GREEN}fileorg${RESET}"
+    echo -e "utility\t\t${YELLOW}organizes files${RESET}"
+    echo
     echo "usage:"
-    echo "    Display help:    ./fileorg -h"
-    echo "    Organize files:  ./fileorg [dir] [new_dir] [ext]"
-    echo ""
+    echo -e "\t\tDisplay help:\t${GREEN}./fileorg -h${RESET}"
+    echo -e "\t\tOrganize files:\t${GREEN}./fileorg [dir] [new_dir] [ext]${RESET}"
+    echo
     echo "params:"
-    echo "    dir: path to the directory in which files to organize"
-    echo "    new_dir: name of the new directory in which everything will be organized. If the directory already exists, it will be used without affecting its content."
-    echo "    ext (optional): when specified, only files that have the specified extension will be organized"
+    echo -e "\t\t- ${YELLOW}dir${RESET}: path to the directory in which files to organize"
+    echo -e "\t\t- ${YELLOW}new_dir${RESET}: name of the new directory in which everything will be organized. If the directory already exists, it will be used without affecting its content."
+    echo -e "\t\t- ${YELLOW}ext (optional)${RESET}: when specified, only files that have the specified extension will be organized"
+    echo -n ":"
+    quit
 }
 
 # Arg error
@@ -71,9 +106,9 @@ if [ $# -eq 3 ]; then
     mkdir -p $ext_dir
     IFS=$default_ifs
     for file in "$dir"/*; do
-	if [ ! -d "$file" ]; then
-	        single_ext "$file" "$ext_dir"
-	fi
+        if [ ! -d "$file" ]; then
+            single_ext "$file" "$ext_dir"
+        fi
     done
     echo "Done"
     exit 0
@@ -95,9 +130,9 @@ function copy_files() {
 # looping over files and calling copy_files for each file
 IFS=$default_ifs
 for file in "$dir"/*; do
-	if [ ! -d "$file" ]; then
-	    copy_files "$file"
-	fi
+    if [ ! -d "$file" ]; then
+        copy_files "$file"
+    fi
 done
 
 echo "Done"
