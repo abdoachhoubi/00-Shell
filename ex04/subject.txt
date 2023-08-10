@@ -1,0 +1,38 @@
+Assignment: CSV to JSON Converter
+
+Objective:
+The objective of this assignment is to create a Bash script that converts data from a CSV file into a JSON file. The script should provide a helpful manual, handle user input, and efficiently perform the conversion.
+
+Requirements:
+
+Script Functionality:
+Create a Bash script named cjson.sh that takes two command-line arguments: the input CSV file and the output JSON file.
+
+Manual Function:
+Implement a function named manual within the script. This function should provide a well-formatted manual that explains the script's purpose, usage, and options. The manual should also allow the user to press 'q' to exit the script without having to press Enter.
+
+Command-line Arguments:
+The script should check for valid command-line arguments:
+
+If no arguments are provided or an incorrect number of arguments is provided, display an error message with the correct usage and exit.
+If the user provides the -h or --help flag as the first argument, display the manual and exit.
+Input Validation:
+Check if the input CSV file exists. If it doesn't, display an error message and exit.
+
+Output File Handling:
+Check if the output JSON file already exists:
+
+If it exists, display a warning and prompt the user to confirm overwriting.
+If the user confirms overwriting, delete the existing file and create a new one. If not, exit the script.
+CSV to JSON Conversion:
+
+Begin the JSON output with an opening square bracket [.
+Loop through each line of the CSV file (excluding the header):
+Convert each line into a JSON-like object.
+Separate the key-value pairs with commas , and add a newline character at the end of each line.
+End the JSON output with a closing square bracket ].
+Formatting and Colors:
+Use color codes for formatting the output and distinguishing different parts of the script (e.g., error messages, success messages, manual).
+
+User Interaction:
+After the conversion is complete, ask the user to press 'q' to quit the script or any other key to continue.
