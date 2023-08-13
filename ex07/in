@@ -1,7 +1,0 @@
-  PID TTY           TIME CMD
- 3236 ttys000    0:00.00 /bin/bash ./proc.sh
-98506 ttys000    0:00.36 -zsh
- 2750 ttys007    0:00.18 -zsh
- 2847 ttys007    0:00.00 cat
- 2806 ttys008    0:00.19 -zsh
- 2846 ttys008    0:00.00 cat
